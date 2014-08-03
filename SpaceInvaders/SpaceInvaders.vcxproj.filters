@@ -27,10 +27,10 @@
     <ClInclude Include="GameOBJ.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="Load.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Load.h">
+    <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,10 +44,10 @@
     <ClCompile Include="GameOBJ.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="Load.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Load.cpp">
+    <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
