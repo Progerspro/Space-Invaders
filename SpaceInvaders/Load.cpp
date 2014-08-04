@@ -2,9 +2,7 @@
 #include "Load.h"
 
 
-Load::Load()
-{
-}
+
 
 
 Load::~Load()
@@ -47,7 +45,7 @@ bool Load::InitTTF()
     return IsSuccess;
 }
 
-bool Load::GetRenderer(SDL_Renderer* Renderer)
+bool Load::Init(SDL_Renderer* Renderer)
 {
     LocalRender = Renderer;
     if (LocalRender == nullptr)
@@ -63,9 +61,11 @@ bool Load::GetRenderer(SDL_Renderer* Renderer)
     return IsSuccess;
 }
 
-bool Load::LoadTexture(std::string ID)
+
+
+bool Load::LoadTexture(std::string ID,SDL_Surface Surface)
 {
-    TextureContainer[ID] = SDL_CreateTextureFromSurface(LocalRender, SurfaceContainer[ID]);
+    TextureContainer[ID] = SDL_CreateTextureFromSurface(LocalRender, Surface);
     if (TextureContainer[ID] == nullptr)
     {
         std::cerr << "Could not load texture because it's load nothing from SurfaceContainer" << std::endl;
@@ -79,5 +79,13 @@ bool Load::LoadTexture(std::string ID)
     return IsSuccess;
 }
 
+Load* Load::Instance()
+{
+    if (ThisInstance == nullptr)
+    {
+        ThisInstance = new Load;
+    }
+    return ThisInstance;
+}
 
 
