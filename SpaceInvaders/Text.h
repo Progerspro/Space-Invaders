@@ -12,7 +12,7 @@ public:
     ~Text();
     bool Init(std::string Path_To_Font, int Font_Size);
     bool LoadSurfaceFromText(std::string Path, std::string MyText, SDL_Color TextColour);
-    bool LoadTexture(std::string ID);
+    void LoadTexture(std::string ID);
     SDL_Texture* GetTexture(std::string ID);
   
     int GetTextWidth(std::string ID);

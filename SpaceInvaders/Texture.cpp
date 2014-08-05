@@ -36,5 +36,5 @@ bool Texture::LoadTexture(std::string ID)
 
 SDL_Texture* Texture::GetTexture(std::string ID)
 {
-    Load::GetTexture(ID)
+    return Load::GetTexture(ID);
 }

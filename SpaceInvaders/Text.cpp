@@ -56,7 +56,7 @@ bool Text::LoadSurfaceFromText(std::string Path,std::string MyText,SDL_Color Tex
 
 
 
-bool Text::LoadTexture(std::string ID)
+void Text::LoadTexture(std::string ID)
 {
     Load::LoadTexture(ID, Text_Surface);
    
