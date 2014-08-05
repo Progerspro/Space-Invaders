@@ -3,7 +3,12 @@
 
 
 
+Load* Load::ThisInstance = nullptr;
 
+
+Load::Load()
+{
+}
 
 Load::~Load()
 {
@@ -63,7 +68,7 @@ bool Load::Init(SDL_Renderer* Renderer)
 
 
 
-bool Load::LoadTexture(std::string ID,SDL_Surface Surface)
+bool Load::LoadTexture(std::string ID,SDL_Surface* Surface)
 {
     TextureContainer[ID] = SDL_CreateTextureFromSurface(LocalRender, Surface);
     if (TextureContainer[ID] == nullptr)
@@ -79,11 +84,28 @@ bool Load::LoadTexture(std::string ID,SDL_Surface Surface)
     return IsSuccess;
 }
 
+SDL_Texture* Load::GetTexture(std::string ID)
+{
+    SDL_DestroyTexture(Return_Temp_Texture);
+    Return_Temp_Texture = nullptr;
+
+    Return_Temp_Texture = TextureContainer[ID];
+    if (Return_Temp_Texture == nullptr)
+    {
+        std::cerr << "Could not take taxture with ID = " << ID << std::endl;
+    }
+    else
+    {
+        std::cout << "Success taking texture with ID = " << ID << std::endl;
+        return Return_Temp_Texture;
+    }
+}
+
 Load* Load::Instance()
 {
     if (ThisInstance == nullptr)
     {
-        ThisInstance = new Load;
+        ThisInstance = new Load();
     }
     return ThisInstance;
 }

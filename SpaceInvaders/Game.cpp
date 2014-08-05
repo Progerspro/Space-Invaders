@@ -21,7 +21,7 @@ bool Game::GameRunning()
 void Game::Init(std::string WindowTitle, int PosX, int PosY, int Width, int Height, int Flag)
 {
     
-    if (SDL_INIT_EVERYTHING > 0)
+    if (SDL_Init(SDL_INIT_EVERYTHING) > 0)
     {
         std::cerr << "Could not init Everything because of the SDL_GetError = " << SDL_GetError << std::endl;
     }

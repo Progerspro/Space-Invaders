@@ -5,9 +5,15 @@ class Texture :
 {
 private:
     std::map<std::string,SDL_Surface*> Texture_SurfaceContainer;
+
+    SDL_Surface* Texture_Surface = nullptr;
+    bool Success = true;
+    
 public:
-    Texture();
     ~Texture();
     
+    bool LoadSurface(std::string Path);
+    bool LoadTexture(std::string ID);
+    SDL_Texture* GetTexture(std::string ID);
 };
 

@@ -10,11 +10,10 @@ const int SCREEN_WIDTH = 500, SCREEN_HEIGHT = 600;
 
 int main(int argc, char* argv[])
 {
-    
     Game game;
     
 	cout << "Starting Space Invaders!" << endl;
-    game.Init("Space Invaders", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    game.Init("Space Invaders", 40, 40, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     while (game.GameRunning())
     {
         game.HandleEvents();
