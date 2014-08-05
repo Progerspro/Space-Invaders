@@ -13,7 +13,7 @@ public:
     ~Texture();
     
     bool LoadSurface(std::string Path);
-    bool LoadTexture(std::string ID);
+    void LoadTexture(std::string ID);
     SDL_Texture* GetTexture(std::string ID);
 };
 

@@ -27,7 +27,7 @@ bool Texture::LoadSurface(std::string Path)
 
 
 
-bool Texture::LoadTexture(std::string ID)
+void Texture::LoadTexture(std::string ID)
 {
     Load::LoadTexture(ID, Texture_Surface);
     SDL_FreeSurface(Texture_Surface);
