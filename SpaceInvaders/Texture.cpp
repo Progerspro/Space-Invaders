@@ -2,11 +2,20 @@
 #include "Texture.h"
 
 
-
+Texture* Texture::Texture_Instance = nullptr;
 
 
 Texture::~Texture()
 {
+}
+
+Texture* Texture::Instance()
+{
+    if (Texture_Instance = nullptr)
+    {
+        Texture_Instance = new Texture;
+    }
+    return Texture_Instance;
 }
 
 bool Texture::LoadSurface(std::string Path)
@@ -27,9 +36,9 @@ bool Texture::LoadSurface(std::string Path)
 
 
 
-void Texture::LoadTexture(std::string ID)
+void Texture::PushTexture(std::string ID)
 {
-    Load::LoadTexture(ID, Texture_Surface);
+    Load::PushTexture(ID, Texture_Surface);
     SDL_FreeSurface(Texture_Surface);
     Texture_Surface = nullptr;
 }

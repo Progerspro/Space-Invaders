@@ -56,9 +56,9 @@ bool Text::LoadSurfaceFromText(std::string Path,std::string MyText,SDL_Color Tex
 
 
 
-void Text::LoadTexture(std::string ID)
+void Text::PushTexture(std::string ID)
 {
-    Load::LoadTexture(ID, Text_Surface);
+    Load::PushTexture(ID, Text_Surface);
    
     SDL_FreeSurface(Text_Surface);
     Text_Surface = nullptr;

@@ -68,7 +68,7 @@ bool Load::Init(SDL_Renderer* Renderer)
 
 
 
-bool Load::LoadTexture(std::string ID,SDL_Surface* Surface)
+bool Load::PushTexture(std::string ID,SDL_Surface* Surface)
 {
     TextureContainer[ID] = SDL_CreateTextureFromSurface(LocalRender, Surface);
     if (TextureContainer[ID] == nullptr)
@@ -110,4 +110,8 @@ Load* Load::Instance()
     return ThisInstance;
 }
 
+SDL_Renderer* Load::GetRender()
+{
+    return LocalRender;
+}
 
