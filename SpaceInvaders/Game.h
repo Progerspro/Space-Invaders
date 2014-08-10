@@ -1,5 +1,8 @@
 #pragma once
 #include "Load.h"
+#include "GameOBJ.h"
+#include "Player.h"
+
 class Game
 {
 private:
@@ -15,6 +18,7 @@ public:
 
 
     void Init(std::string WindowTitle, int PosX, int PosY, int Width, int Height, int Flag);
+	void PushGameObj();
     void Render();
     void Update();
     void HandleEvents();

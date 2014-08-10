@@ -14,26 +14,9 @@ Load::~Load()
 {
 }
 
-bool Load::InitIMG(const int Flag)
-{
-    static bool IsRepeatCall = false;
 
-    if (IsRepeatCall == true)
-        IMG_Quit();
 
-    if (IMG_Init(Flag) == 0)
-    {
-        std::cerr << "Could not init image with flag = " << Flag << "\nWith Img_GetError = " << IMG_GetError() << std::endl;
-        IsSuccess = false;
-    }
-    else
-    {
-        std::cout << "Successful Image Init with flag = " << Flag << std::endl;
-        IsRepeatCall = true;
-        IsSuccess = true;
-    }
-    return IsSuccess;
-}
+
 
 bool Load::InitTTF()
 {
@@ -70,10 +53,11 @@ bool Load::Init(SDL_Renderer* Renderer)
 
 bool Load::PushTexture(std::string ID,SDL_Surface* Surface)
 {
-    TextureContainer[ID] = SDL_CreateTextureFromSurface(LocalRender, Surface);
-    if (TextureContainer[ID] == nullptr)
+	SurfaceContainer[ID] = Surface;
+    TextureContainer[ID] = SDL_CreateTextureFromSurface(LocalRender, SurfaceContainer[ID]);
+    if (TextureContainer[ID] == NULL)
     {
-        std::cerr << "Could not load texture because it's load nothing from SurfaceContainer" << std::endl;
+        std::cerr << "Could not load texture because it's load nothing from Surface" << std::endl;
         IsSuccess = false;
     }
     else
@@ -86,8 +70,7 @@ bool Load::PushTexture(std::string ID,SDL_Surface* Surface)
 
 SDL_Texture* Load::GetTexture(std::string ID)
 {
-    SDL_DestroyTexture(Return_Temp_Texture);
-    Return_Temp_Texture = nullptr;
+  
 
     Return_Temp_Texture = TextureContainer[ID];
     if (Return_Temp_Texture == nullptr)

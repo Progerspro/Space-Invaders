@@ -11,6 +11,8 @@ private:
 public:
     ~Texture();
    static Texture* Instance();
+   void Init(SDL_Renderer* Render);
+   bool InitIMG(int Flag);
     bool LoadSurface(std::string Path);
     void PushTexture(std::string ID);
     SDL_Texture* GetTexture(std::string ID);

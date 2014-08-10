@@ -14,6 +14,7 @@ int main(int argc, char* argv[])
     
 	cout << "Starting Space Invaders!" << endl;
     game.Init("Space Invaders", 40, 40, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+	game.PushGameObj();
     while (game.GameRunning())
     {
         game.HandleEvents();

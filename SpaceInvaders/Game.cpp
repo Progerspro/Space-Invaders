@@ -44,19 +44,30 @@ void Game::Init(std::string WindowTitle, int PosX, int PosY, int Width, int Heig
             else
             {
                 std::cout << "Success Creating Renderer!" << std::endl;
-                Load::Instance()->Init(P_Renderer);
+				GameOBJ::Instance()->Init(P_Renderer);
+				Texture::Instance()->InitIMG(IMG_INIT_PNG);
             }
         }
     }
 
 }
 
+void Game::PushGameObj()
+{
+	GameOBJ::Instance()->Push_Objects("test.png","test");
+}
+
 void Game::Render()
 {
+	SDL_RenderClear(P_Renderer);
     if (SDL_SetRenderDrawColor(P_Renderer, 255, 255, 255, 255) == -1)
         std::cerr << "Could not SetRenderDrawColor! because of SDL_GetError = " << SDL_GetError << std::endl;
     //TODO: Make The rendering for everything here
-
+	GameOBJ::Instance()->Load(0, 0, 300, 300, "test");
+	GameOBJ::Instance()->Draw();
+	SDL_RenderPresent(P_Renderer);
+	GameOBJ* player = new Player;
+	
 }
 
 void Game::Update()

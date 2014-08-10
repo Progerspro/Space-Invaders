@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameOBJ.h"
 
+GameOBJ* GameOBJ::ThisOBJ = nullptr;
 
 GameOBJ::GameOBJ()
 {
@@ -33,8 +34,33 @@ void GameOBJ::Draw()
     Src_Rect.x = 0;
     Src_Rect.y = 0;
     Dest_Rect.w = Src_Rect.w = m_Width;
-    Dest_Rect.w = Src_Rect.h = m_Height;
+    Dest_Rect.h = Src_Rect.h = m_Height;
     Dest_Rect.x = m_x;
     Dest_Rect.y = m_y;
-    SDL_RenderCopy(Load::Instance()->GetRender(), Obj, &Src_Rect, &Dest_Rect);
+    SDL_RenderCopy(LocalRender, Obj, &Src_Rect, &Dest_Rect);
+}
+
+GameOBJ* GameOBJ::Instance()
+{
+	if (ThisOBJ == nullptr)
+		ThisOBJ = new GameOBJ;
+	return ThisOBJ;
+}
+
+void GameOBJ::Init(SDL_Renderer* P_Render)
+{
+	LocalRender = P_Render;
+	Texture::Instance()->Init(P_Render);
+}
+
+void GameOBJ::FrameDraw(int Raw,int Frame)
+{
+	SDL_Rect Src_Rect, Dest_Rect;
+	Src_Rect.x = m_Width * Frame;
+	Src_Rect.y = m_Height * (Raw - 1);
+	Dest_Rect.w = Src_Rect.w = m_Width;
+	Dest_Rect.h = Src_Rect.h = m_Height;
+	Dest_Rect.x = m_x;
+	Dest_Rect.y = m_y;
+	SDL_RenderCopyEx(LocalRender, Obj, &Src_Rect, &Dest_Rect,0,0,SDL_FLIP_NONE);
 }

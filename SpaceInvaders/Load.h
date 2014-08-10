@@ -13,6 +13,7 @@ private:
     SDL_Texture* Return_Temp_Texture = nullptr;
 protected:
     std::map<std::string, SDL_Texture*> TextureContainer;
+	std::map<std::string, SDL_Surface*> SurfaceContainer;
     SDL_Renderer* LocalRender = nullptr;
     Load();
 public:
@@ -21,7 +22,7 @@ public:
 
     static Load* Instance();
     SDL_Renderer* GetRender();
-    bool InitIMG(int Flag);
+    
     bool InitTTF();
     bool Init(SDL_Renderer* Renderer);
     bool PushTexture(std::string ID, SDL_Surface* Surface);

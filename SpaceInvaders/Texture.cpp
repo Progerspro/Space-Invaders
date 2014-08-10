@@ -11,9 +11,10 @@ Texture::~Texture()
 
 Texture* Texture::Instance()
 {
-    if (Texture_Instance = nullptr)
+    if (Texture_Instance == nullptr)
     {
         Texture_Instance = new Texture;
+		return Texture_Instance;
     }
     return Texture_Instance;
 }
@@ -46,4 +47,30 @@ void Texture::PushTexture(std::string ID)
 SDL_Texture* Texture::GetTexture(std::string ID)
 {
     return Load::GetTexture(ID);
+}
+
+void Texture::Init(SDL_Renderer* Render)
+{
+	Load::LocalRender = Render;
+}
+
+bool Texture::InitIMG(const int Flag)
+{
+	static bool IsRepeatCall = false;
+
+	if (IsRepeatCall == true)
+		IMG_Quit();
+
+	if (IMG_Init(Flag) == 0)
+	{
+		std::cerr << "Could not init image with flag = " << Flag << "\nWith Img_GetError = " << IMG_GetError() << std::endl;
+		Success = false;
+	}
+	else
+	{
+		std::cout << "Successful Image Init with flag = " << Flag << std::endl;
+		IsRepeatCall = true;
+		Success = true;
+	}
+	return Success;
 }
